@@ -193,6 +193,18 @@ select * from users;
 -- Read all data
 select * from users;
 
+-- column allius and set column name space
+use sql_store;
+select 
+	customer_id,
+    first_name,
+    points,
+    (points * 5) + 10 as 'discount amount'
+from customers;
+
+-- Find unique using distinct keyward
+select distinct state from customers;
+
 -- Read specific column
 select name from users;
 
