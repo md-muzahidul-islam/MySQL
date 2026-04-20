@@ -550,6 +550,43 @@ SELECT * FROM users WHERE name LIKE 'a%';
 -- Contains 'an'
 SELECT * FROM users WHERE name LIKE '%an%';
 ```
+# SQL REGEXP Examples
+
+This document demonstrates the usage of `REGEXP` in SQL for pattern matching within string columns.
+
+---
+
+## 1. Find customers whose last name contains `hd` or `id`
+
+```sql
+SELECT *
+FROM customers
+WHERE last_name REGEXP '[h-i]d';
+```
+## 2. Find customers whose first name contains elka or ambur
+```sql
+SELECT * 
+FROM customers
+WHERE first_name REGEXP 'elka|ambur';
+```
+## 3. Find customers whose last name ends with ey or on
+```sql
+SELECT *
+FROM customers
+WHERE last_name REGEXP 'ey$|on$';
+```
+## 4. Find customers whose last name starts with my or contains se
+```sql
+SELECT *
+FROM customers
+WHERE last_name REGEXP '^my|se';
+```
+## 5. Find customers contains last name b followed by r, or u
+```sql
+SELECT *
+FROM customers
+WHERE last_name REGEXP 'br|bu';
+```
 # ✏️ Database Update Operations (MySQL)
 
 ## 🔹 Basic Update
