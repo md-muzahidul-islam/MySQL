@@ -466,6 +466,23 @@ SELECT * FROM users;
 ```sql
 SELECT * FROM users;
 ```
+## Table collumn allias and column name between space
+column allius and set column name space
+```sql
+use sql_store;
+select 
+	customer_id,
+    first_name,
+    points,
+    (points * 5) + 10 as 'discount amount'
+from customers;
+```
+## find unique value
+Find unique using distinct keyward
+```sql
+select distinct state from customers;
+```
+
 ## Read Specific Column
 ```sql
 SELECT name FROM users;
