@@ -767,6 +767,18 @@ select name from customers
 union
 select name from clients;
 ```
+## Duplicate table
+```sql
+create table invoices_archived as
+select * from invoices;
+truncate table invoices_archived;
+insert into invoices_archived
+select * from invoices
+where date> '2019-01-01'
+
+create table invoices_archived as
+select * from inboices;
+```
 
 
 
