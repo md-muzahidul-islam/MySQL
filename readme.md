@@ -690,9 +690,83 @@ DELETE FROM users
 WHERE name LIKE 'm%';
 ```
 
+## Join
+In SQL, JOINs are used to combine rows from two or more tables based on related
+columns — usually a foreign key in one table referencing a primary key in another.
+# 1. Inner join
+Returns only the matching rows from both tables.
+```sql
+select order_items.order_id,products.name,order_items.quantity,order_items.unit_price
+from order_items
+inner join products on order_items.product_id=products.product_id;
+```
+# 2. Join accross database
+join table from outsider database
+```sql
+select order_items.order_id,products.name,order_items.quantity,order_items.unit_price
+from order_items
+inner join sql_inventory.products on order_items.product_id=sql_inventory.products.product_id;
+```
+# 3. self join
+A Self JOIN is a regular join, but the table is joined with itself.
+```sql
+SELECT a.employee_id, a.first_name as username,b.first_name as manager
+from employees a
+inner join employees b on a.reports_to=b.employee_id;
+```
+# 4. join multiple table
+```sql
+select orders.order_id,customers.first_name,customers.last_name,order_statuses.name
+from orders
+inner join customers on orders.customer_id=customers.customer_id
+inner join order_statuses on orders.status=order_statuses.order_status_id;
+```
+# 5. composit join(two or mode primary key add to create a unique indentifire that's called composite key)
+```sql
+select * 
+from order_items
+join order_item_notes on order_items.order_id=order_item_notes.order_id and
+						order_items.product_id=order_item_notes.product_id;
+```
+# 6. Implicit join 
+```sql
+select o.order_id,c.first_name
+from orders o, customers c
+where o.customer_id=c.customer_id;
+```
+# 7. Cross join
+```sql
+select o.order_id,c.first_name
+from orders o, customers c
+```
 
-
-
+## 8. outer join(left and right)
+outer join takes left table all data right join takes right table all data
+```sql
+select products.product_id,products.name,order_items.quantity
+from products
+left join order_items on products.product_id =order_items.product_id;
+```
+## 9. Natural join
+```sql
+select customers.first_name
+from customers 
+natural join orders;
+```
+## 10. using clause
+```sql
+select customers.first_name
+from customers 
+join orders using(customer_id);
+```
+### Union and union all(collaborate two select statement)
+number of column and their data type will be same.
+When performing cross-category reporting.
+```sql
+select name from customers
+union
+select name from clients;
+```
 
 
 
