@@ -779,6 +779,106 @@ where date> '2019-01-01'
 create table invoices_archived as
 select * from inboices;
 ```
+## Aggrigate function(sumarrized data)
+sum(),avg(),upper(),lower(),count(),max(),min(),length(),mod(),group by,concat(),if()
 
+# sum()
+Returns the total sum of a numeric column.
+```sql
+SELECT SUM(salary) AS total_salary FROM employees;
+```
 
+# avg()
+Returns the average value of a numeric column.
+```sql
+SELECT AVG(salary) AS avg_salary FROM employees;
+```
 
+# upper()
+Definition: Converts text to uppercase.
+```sql
+SELECT UPPER(name) FROM employees;
+```
+
+# lower()
+Definition: Converts text to lowercase.
+```sql
+SELECT SUM(salary) AS total_salary FROM employees;
+```
+# count()
+Definition: Counts the number of rows.
+```sql
+SELECT COUNT(*) FROM employees;
+```
+
+# max()
+Definition: Returns the maximum value.
+```sql
+SELECT MAX(salary) FROM employees;
+```
+
+# min()
+Definition: Returns the minimum value.
+```sql
+SELECT min(salary) FROM employees;
+```
+
+# length()
+Definition: Returns the length of a string (in bytes).
+```sql
+SELECT LENGTH(name) FROM employees;
+```
+
+# mod()
+Definition: Returns the remainder of a division.
+```sql
+SELECT MOD(10, 3);  -- Output: 1
+```
+
+# Group by
+Definition: Groups rows that have the same values into summary rows.
+```sql
+SELECT department, COUNT(*) 
+FROM employees
+GROUP BY department;
+```
+
+# concat
+Definition: Joins two or more strings.
+```sql
+SELECT CONCAT(first_name, ' ', last_name) AS full_name 
+FROM employees;
+```
+
+# if()
+Definition: Returns a value based on a condition.
+```sql
+SELECT 
+    name,
+    IF(salary > 50000, 'High', 'Low') AS salary_status
+FROM employees;
+```
+
+# round()
+Definition: Rounds a number to a specified number of decimal places.
+```sql
+SELECT ROUND(5.678, 2);   -- Output: 5.68
+SELECT ROUND(5.673, 2);   -- Output: 5.67
+SELECT ROUND(5.5);        -- Output: 6
+```
+
+# ceil
+Definition: Returns the smallest integer greater than or equal to the number (always rounds UP).
+```sql
+SELECT CEIL(5.1);   -- Output: 6
+SELECT CEIL(5.9);   -- Output: 6
+SELECT CEIL(-5.1);  -- Output: -5
+```
+
+# floor
+Definition: Returns the largest integer less than or equal to the number (always rounds DOWN).
+```sql
+SELECT FLOOR(5.9);   -- Output: 5
+SELECT FLOOR(5.1);   -- Output: 5
+SELECT FLOOR(-5.1);  -- Output: -6
+```
