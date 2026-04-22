@@ -837,10 +837,44 @@ SELECT MOD(10, 3);  -- Output: 1
 
 # Group by
 Definition: Groups rows that have the same values into summary rows.
+Used to group rows that have the same values into summary rows.
 ```sql
 SELECT department, COUNT(*) 
 FROM employees
 GROUP BY department;
+```
+
+# having
+Definition: Filters grouped data (works after GROUP BY).
+👉 Think:
+
+WHERE → filters rows before grouping
+HAVING → filters groups after grouping
+```sql
+select 
+	customers.customer_id,
+	customers.first_name,
+	customers.last_name,
+	sum(order_items.quantity*order_items.unit_price) as total_spent
+from customers
+join orders using(customer_id)
+join order_items using(order_id)
+where state='va'
+group by customers.first_name,customers.last_name,customers.customer_id
+having sum(order_items.quantity*order_items.unit_price)>100;
+```
+
+# group by with rollup
+Definition: Adds subtotal and grand total rows to the result.
+```sql
+select 
+	state,
+    city,
+    sum(quantity*unit_price) as total
+from customers
+join orders on customers.customer_id=orders.order_id
+join order_items on orders.order_id=order_items.order_id
+group by state,city with rollup;
 ```
 
 # concat
