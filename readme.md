@@ -916,3 +916,27 @@ SELECT FLOOR(5.9);   -- Output: 5
 SELECT FLOOR(5.1);   -- Output: 5
 SELECT FLOOR(-5.1);  -- Output: -6
 ```
+# 🔹 1. IFNULL()
+Returns a specified value if the expression is NULL; otherwise returns the expression.
+```sql
+SELECT IFNULL(NULL, 'No Value') AS result;
+```
+
+# 🔹 2. IF()
+Works like an inline IF-ELSE statement.
+```sql
+SELECT IF(5 > 3, 'Yes', 'No') AS result;
+```
+
+# 🔹 3. CASE
+Used for conditional logic (like switch or multiple if-else).
+```sql
+SELECT name,
+       CASE
+           WHEN marks >= 80 THEN 'A'
+           WHEN marks >= 60 THEN 'B'
+           WHEN marks >= 50 THEN 'C'
+           ELSE 'Fail'
+       END AS grade
+FROM students;
+```
