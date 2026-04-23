@@ -940,3 +940,12 @@ SELECT name,
        END AS grade
 FROM students;
 ```
+
+# VIEW 
+In MySQL, a VIEW is like a virtual table created from a query. It does not store data itself — instead, it shows data from one or more tables dynamically.
+```sql
+CREATE VIEW student_view AS
+SELECT name, marks
+FROM students;
+SELECT * FROM student_view;
+```
