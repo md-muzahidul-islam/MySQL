@@ -29,3 +29,6 @@ END $$
 
 DELIMITER ;
 ```
+
+# Transactions
+transaction is a sequence of one or more SQL operations that are executed as a single unit of work.
