@@ -1041,3 +1041,26 @@ END$$
 
 DELIMITER ;
 ```
+
+# Trigger
+A trigger is a special kind of stored program that is automatically executed
+(triggered) when a specific event occurs in a table — such as INSERT , DELETE 
+```sql
+DELIMITER $$
+
+create trigger delete_payment
+	after delete on payments
+	for each row
+begin
+	update invoices
+    set payment_total= payment_total - old.amount
+    where invoice_id = old.invoice_id;
+end $$
+DELIMITER $; 
+
+insert into payments values(default,5,2,'2019-01-01',500,1);
+delete 
+from payments 
+where payment_id=11;
+
+```
