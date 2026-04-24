@@ -1015,3 +1015,29 @@ begin
 END $$
 DELIMITER ;
 ```
+
+# Function
+```sql
+DELIMITER $$
+CREATE FUNCTION risk_factor 
+(
+	client_id int
+)
+RETURNS INTEGER
+reads sql data
+BEGIN
+	declare risk_factor decimal(10,2) default 0;
+    declare invoice_count int;
+    declare invoices_total decimal(10,2);
+    
+    select count(*), sum(invoice_total)
+    into invoice_count,invoices_total
+    from invoices i
+    where i.client_id=client_id;
+    
+    set risk_factor = invoices_total/invoice_count * 5;
+RETURN ifnull(risk_factor,0);
+END$$
+
+DELIMITER ;
+```
