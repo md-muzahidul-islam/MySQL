@@ -949,3 +949,69 @@ SELECT name, marks
 FROM students;
 SELECT * FROM student_view;
 ```
+### Procedure
+# 1. create procedure
+```sql
+DELIMITER $$
+
+create procedure get_orders()
+begin
+	select * from orders;
+END $$
+DELIMITER ;
+```
+# 2. Drop procedure
+```sql
+drop procedure get_orders;
+```
+# 3. Parameter
+```sql
+DELIMITER $$
+
+create procedure get_customers_by_state
+(
+	p_state char(2)
+)
+begin
+	select * from customers
+    where state = p_state;
+END $$
+DELIMITER ;
+```
+# 4. output parameter (session variable)
+```sql
+DELIMITER $$
+
+create procedure get_payments
+(
+	p_client_id int,
+    out p_invoices_count int,
+    out p_invoice_total decimal(10,2)
+)
+begin
+	select count(*) ,sum(invoice_total)
+    into p_invoices_count,p_invoice_total
+    from invoices
+    where client_id=p_client_id and payment_total>0;
+END $$
+DELIMITER ;
+```
+# 5. local variable
+```sql
+DELIMITER $$
+
+create procedure get_risk_factor()
+begin
+	declare risk_factor decimal(10,2) default 0;
+    declare invoice_count int;
+    declare invoices_total decimal(10,2);
+    
+    select count(*), sum(invoice_total)
+    into invoice_count,invoices_total
+    from invoices;
+    
+    set risk_factor = invoices_total/invoice_count * 5;
+    select risk_factor;
+END $$
+DELIMITER ;
+```
